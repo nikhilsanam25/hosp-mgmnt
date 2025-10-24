@@ -16,7 +16,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Patient Registered (Frontend only)");
+    alert("Patient Registered");
   };
 
   return (
