@@ -1,34 +1,35 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Doctors = () => {
-  const [doctors, setDoctors] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://doc-back.onrender.com/doctors")
-      .then((res) => setDoctors(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+function Doctors() {
+  const doctors = [
+    { name: "Satya Deep", gender: "Male", age: 26, specialization: "cardio", salary: 4000000 },
+    { name: "Teja", gender: "Male", age: 26, specialization: "Muscles", salary: 7000000 },
+    { name: "Sam", gender: "Male", age: 26, specialization: "Bones", salary: 4000000 },
+    { name: "Anu", gender: "Male", age: 26, specialization: "Blood Pressure", salary: 7000000 },
+  ];
 
   return (
-    <div>
-      <h1>Doctors Page</h1>
-      {doctors.length === 0 ? (
-        <p></p>
-      ) : (
-        doctors.map((d, index) => (
-          <div key={index}>
-            <p>Name: {d.name}</p>
-            <p>Specialization: {d.specialization}</p>
-            <p>Salary: {d.salary}</p>
-            <p>Gender: {d.gender}</p>
-            <hr />
+    <div className="container mt-5">
+      <h2 className="text-center mb-4 fw-bold">Doctors List</h2>
+      <div className="row">
+        {doctors.map((doctor, index) => (
+          <div key={index} className="col-md-4 mb-4">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <h6 className="card-title fw-bold">Doctor ID: {index + 1}</h6>
+                <p><b>Name:</b> {doctor.name}</p>
+                <p><b>Gender:</b> {doctor.gender}</p>
+                <p><b>Age:</b> {doctor.age}</p>
+                <p><b>Specialization:</b> {doctor.specialization}</p>
+                <p><b>Salary:</b> {doctor.salary}</p>
+              </div>
+            </div>
           </div>
-        ))
-      )}
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Doctors;
